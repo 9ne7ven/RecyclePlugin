@@ -12,4 +12,6 @@ xp-estimated: "§6Estimated XP: §e"
 recap-title: "§aSummary:"
 total-xp: "§6Total XP: "
 
+no-permission: "§cYou do not have permission."
+
 plugin-reloaded: "§aPlugin reloaded!"

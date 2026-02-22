@@ -17,6 +17,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -29,18 +30,46 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
     private final Map<Material, RecycleData> recycleMap = new HashMap<>();
     private final Map<UUID, Boolean> recycleConfirmed = new HashMap<>();
     private FileConfiguration messages;
+    private String activeLanguage;
 
     private final LegacyComponentSerializer serializer =
             LegacyComponentSerializer.legacySection();
 
+    // =========================================================
+    // CONSOLE COLOR SYSTEM (ANSI)
+    // =========================================================
+
+    private static final String RESET = "\u001B[0m";
+    private static final String DARK_BLUE = "\u001B[34m";
+    private static final String DARK_PURPLE = "\u001B[35m";
+    private static final String PINK = "\u001B[95m";
+
+    private boolean supportsAnsi() {
+        return System.console() != null;
+    }
+
+    private String color(String color, String message) {
+        if (supportsAnsi()) {
+            return color + message + RESET;
+        }
+        return message;
+    }
+    
     @Override
     public void onEnable() {
+
         Bukkit.getPluginManager().registerEvents(this, this);
         saveDefaultConfig();
         loadMessages();
         loadRecycleData();
         this.getCommand("recycle").setExecutor(this);
         this.getCommand("rpadmin").setExecutor(this);
+        logStartup();
+    }
+
+    @Override
+    public void onDisable() {
+        logShutdown();
     }
 
     // =========================================================
@@ -49,19 +78,49 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
 
     private void loadMessages() {
 
-        String lang = getConfig().getString("language", "fr");
-        String fileName = "messages_" + lang + ".yml";
+        String configuredLang = getConfig().getString("language", "en");
+        String fallbackLang = getConfig().getString("fallback-language", "en");
 
         File langFolder = new File(getDataFolder(), "lang");
         if (!langFolder.exists()) langFolder.mkdirs();
 
-        File file = new File(langFolder, fileName);
+        String langToLoad = configuredLang;
+
+        if (getResource("lang/messages_" + configuredLang + ".yml") == null) {
+
+            getLogger().warning(color(DARK_PURPLE,
+                    "Unknown language detected: " + configuredLang));
+
+            if (getResource("lang/messages_" + fallbackLang + ".yml") != null) {
+
+                getLogger().warning(color(DARK_BLUE,
+                        "Falling back to: " + fallbackLang));
+
+                langToLoad = fallbackLang;
+
+            } else {
+
+                getLogger().warning(color(DARK_BLUE,
+                        "Fallback language invalid. Defaulting to: en"));
+
+                langToLoad = "en";
+            }
+
+            getConfig().set("language", langToLoad);
+            saveConfig();
+
+            getLogger().info(color(PINK,
+                    "Configuration updated automatically to language: " + langToLoad));
+        }
+
+        File file = new File(langFolder, "messages_" + langToLoad + ".yml");
 
         if (!file.exists()) {
-            saveResource("lang/" + fileName, false);
+            saveResource("lang/messages_" + langToLoad + ".yml", false);
         }
 
         messages = YamlConfiguration.loadConfiguration(file);
+        activeLanguage = langToLoad;
     }
 
     private String msg(String key) {
@@ -121,7 +180,16 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (command.getName().equalsIgnoreCase("recycle")) {
+
             if (!(sender instanceof Player player)) return true;
+
+            if (!player.hasPermission("recycleplugin.use")) {
+                player.sendMessage(
+                        Component.text("You do not have permission to use this command.")
+                );
+                return true;
+            }
+
             openRecycleGUI(player);
             return true;
         }
@@ -130,9 +198,16 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
                 && args.length == 1
                 && args[0].equalsIgnoreCase("reload")) {
 
+            if (!sender.hasPermission("recycleplugin.reload")) {
+                sender.sendMessage(msgComponent("no-permission"));
+                return true;
+            }
+
             reloadConfig();
             loadMessages();
             loadRecycleData();
+
+            logReload();
 
             sender.sendMessage(msgComponent("plugin-reloaded"));
             return true;
@@ -293,7 +368,10 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
 
     private void handleRecycle(Player player) {
 
-        Inventory inv = player.getOpenInventory().getTopInventory();
+        InventoryView view = player.getOpenInventory();
+        if (view == null) return;
+        Inventory inv = view.getTopInventory();
+        if (inv == null) return;
 
         int totalXP = 0;
         Map<Material, Integer> materials = new HashMap<>();
@@ -306,7 +384,9 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
             if (item == null || item.getType() == Material.AIR) continue;
 
             RecycleData data = recycleMap.get(item.getType());
-            if (data == null) continue;
+            if (data == null) {
+                continue;
+            }
 
             int amount = data.maxAmount;
 
@@ -381,6 +461,43 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
         meta.displayName(Component.text(" "));
         glass.setItemMeta(meta);
         return glass;
+    }
+
+    private void logStartup() {
+
+        String version = getPluginMeta().getVersion();
+        String lang = activeLanguage;
+        int items = recycleMap.size();
+
+        getLogger().info("");
+        getLogger().info(color(PINK, "RecyclePlugin v" + version));
+        getLogger().info(color(DARK_PURPLE, "    | Author: ⟡ svncho_ ⟡"));
+        getLogger().info(color(DARK_BLUE, "    | Running on Paper 1.21"));
+        getLogger().info(color(DARK_BLUE, "    | Loaded items: " + items));
+        getLogger().info(color(DARK_BLUE, "    | Language: " + lang));
+        getLogger().info("");
+    }
+
+    private void logReload() {
+
+        String version = getPluginMeta().getVersion();
+        int items = recycleMap.size();
+        String lang = activeLanguage;
+
+        getLogger().info("");
+        getLogger().info(color(PINK, "RecyclePlugin v" + version + " reloaded"));
+        getLogger().info(color(DARK_PURPLE, "    | Configuration reloaded"));
+        getLogger().info(color(DARK_BLUE, "    | Loaded items: " + items));
+        getLogger().info(color(DARK_BLUE, "    | Language: " + lang));
+        getLogger().info("");
+    }
+
+    private void logShutdown() {
+
+        getLogger().info("");
+        getLogger().info(color(DARK_PURPLE, "RecyclePlugin disabled"));
+        getLogger().info(color(DARK_BLUE, "    | Shutting down safely"));
+        getLogger().info("");
     }
 
     // =========================================================

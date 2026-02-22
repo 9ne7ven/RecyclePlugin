@@ -4,11 +4,11 @@
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.tonnom</groupId>
-    <artifactId>recycleplugin</artifactId>
-    <version>1.0</version>
+    <groupId>com.svncho</groupId>
+    <artifactId>RecyclePlugin</artifactId>
+    <version>1.1.0</version>
     <name>RecyclePlugin</name>
-    <description>Plugin Minecraft pour recycler les items</description>
+    <description>A fully configurable advanced GUI recycling system</description>
 
     <repositories>
         <repository>

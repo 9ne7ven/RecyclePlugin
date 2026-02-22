@@ -1,27 +1,60 @@
 # ========================================================
-# RecyclePlugin Configuration
+# ♻ RecyclePlugin - Advanced Recycling System by svncho_
 # ========================================================
-# RecyclePlugin permet de recycler tous les équipements et outils
-# directement via NPC ou command /recycle. 
-# Selon la durabilité et le type, vous obtiendrez du fer, or, diamant, 
-# cuivre, émeraude, membranes, etc.
-
-# Instructions utilisateur :
-# - Placez l'item à recycler dans l'un des 7 slots disponibles'
-# - Le résultat obtenus apparaîtra dans le chat
-# - Configurez la langue via 'language' pour les messages joueurs.
-# - Configurez les matériaux recyclables et min/max dans 'items'.
+# A fully configurable GUI-based recycling system for Paper servers.
 #
-# Langues disponibles : fr, en, de, es, zh
-language: fr
+# Players can recycle tools, weapons, armor, and special items
+# to obtain materials and experience points.
+#
+# ✔ GUI Interface
+# ✔ XP Reward System
+# ✔ Multi-language Support
+# ✔ Fully Configurable Items
+# ✔ Reload Command Support
+#
+# --------------------------------------------------------
+# HOW IT WORKS
+# --------------------------------------------------------
+# 1. Open the recycler via NPC or /recycle
+# 2. Place items into the 7 available input slots
+# 3. Preview rewards instantly
+# 4. Confirm to receive materials + XP
+#
+# --------------------------------------------------------
+# LANGUAGE SETTINGS
+# --------------------------------------------------------
+# Available languages: en, fr, de, es, zh
+# If a language file is missing, fallback-language will be used.
+#
+language: en
 fallback-language: en
-enchanted-xp: 50 # points d'expériences donnés si item enchanté puis coeff multiplicateur
 
-# Items recyclables : material = sortie après recyclage, min/max selon durabilité
+# --------------------------------------------------------
+# XP SETTINGS
+# --------------------------------------------------------
+# Base XP is determined by material rarity.
+# If an item is enchanted, an additional XP bonus is applied.
+#
+enchanted-xp: 50  # Bonus XP added if the item has enchantments
+
+# --------------------------------------------------------
+# RECYCLABLE ITEMS CONFIGURATION
+# --------------------------------------------------------
+# Format:
+# item_name:
+#   material: MATERIAL_RECEIVED
+#   min: minimum amount received
+#   max: maximum amount received
+#
+# NOTE:
+# - Item names must match the exact vanilla Material name (lowercase).
+# - Output material must match the exact Bukkit Material enum.
+# - You can freely add or remove items.
+#
 items:
 
   # ========================================================
-  # Points d'expérience par rareté de matériau
+  # XP Rewards by Material Rarity
   # ========================================================
   xp_rewards:
     common_xp: 10
@@ -30,9 +63,9 @@ items:
     gold_xp: 25
     diamond_xp: 40
     netherite_xp: 60
-    
+
   # ====================================================
-  # ARMURE
+  # ARMOR
   # ====================================================
   leather_helmet:    {material: LEATHER, min: 0, max: 3}
   leather_chestplate: {material: LEATHER, min: 0, max: 3}
@@ -70,7 +103,7 @@ items:
   chainmail_boots:     {material: EMERALD, min: 1, max: 1}
 
   # ====================================================
-  # LANCES
+  # SPEARS
   # ====================================================
   wooden_spear:     {material: OAK_PLANKS, min: 0, max: 2}
   stone_spear:      {material: COBBLESTONE, min: 0, max: 2}
@@ -78,10 +111,10 @@ items:
   iron_spear:       {material: IRON_INGOT, min: 0, max: 2}
   golden_spear:     {material: GOLD_INGOT, min: 0, max: 2}
   diamond_spear:    {material: DIAMOND, min: 0, max: 2}
-  netherite_spear:  {material: NETHERITE_INGOT, min: 0, max: 2}
+  netherite_spear:  {material: NETHERITE_INGOT, min: 0, max: 1}
 
   # ====================================================
-  # EPÉES
+  # SWORDS
   # ====================================================
   wooden_sword:     {material: OAK_PLANKS, min: 0, max: 2}
   stone_sword:      {material: COBBLESTONE, min: 0, max: 2}
@@ -89,7 +122,7 @@ items:
   copper_sword:     {material: COPPER_INGOT, min: 0, max: 2}
   golden_sword:     {material: GOLD_INGOT, min: 0, max: 2}
   diamond_sword:    {material: DIAMOND, min: 0, max: 2}
-  netherite_sword:  {material: NETHERITE_INGOT, min: 0, max: 2}
+  netherite_sword:  {material: NETHERITE_INGOT, min: 0, max: 1}
 
   # ====================================================
   # TRIDENT
@@ -97,7 +130,7 @@ items:
   trident:          {material: HEART_OF_THE_SEA, min: 1, max: 1}
 
   # ====================================================
-  # OUTILS
+  # TOOLS
   # ====================================================
   wooden_pickaxe:   {material: OAK_PLANKS, min: 0, max: 2}
   wooden_axe:       {material: OAK_PLANKS, min: 0, max: 2}
@@ -130,23 +163,23 @@ items:
   diamond_shovel:   {material: DIAMOND, min: 0, max: 2}
   diamond_hoe:      {material: DIAMOND, min: 0, max: 2}
 
-  netherite_pickaxe: {material: NETHERITE_INGOT, min: 0, max: 2}
-  netherite_axe:     {material: NETHERITE_INGOT, min: 0, max: 2}
-  netherite_shovel:  {material: NETHERITE_INGOT, min: 0, max: 2}
-  netherite_hoe:     {material: NETHERITE_INGOT, min: 0, max: 2}
+  netherite_pickaxe: {material: NETHERITE_INGOT, min: 0, max: 1}
+  netherite_axe:     {material: NETHERITE_INGOT, min: 0, max: 1}
+  netherite_shovel:  {material: NETHERITE_INGOT, min: 0, max: 1}
+  netherite_hoe:     {material: NETHERITE_INGOT, min: 0, max: 1}
 
   # ====================================================
-  # CANNE A PECHE
+  # FISHING ROD
   # ====================================================
   fishing_rod:      {material: STRING, min: 1, max: 2}
 
   # ====================================================
-  # BOUCLIER
+  # SHIELD
   # ====================================================
   shield:           {material: IRON_INGOT, min: 0, max: 3}
 
   # ====================================================
-  # ARC / ARBALETE
+  # BOW / CROSSBOW
   # ====================================================
   bow:              {material: STRING, min: 1, max: 5}
   crossbow:         {material: STRING, min: 1, max: 5}

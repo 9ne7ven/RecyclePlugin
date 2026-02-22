@@ -12,4 +12,6 @@ xp-estimated: "§6预计经验: §e"
 recap-title: "§a总结:"
 total-xp: "§6总经验: "
 
+no-permission: "§c你没有权限执行此操作。"
+
 plugin-reloaded: "§a插件已重载!"
