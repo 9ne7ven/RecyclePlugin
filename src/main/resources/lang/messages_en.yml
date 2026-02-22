@@ -1,0 +1,15 @@
+gui-title: "§6Recycle Menu"
+
+accept: "§aAccept"
+refuse: "§cCancel"
+
+reward-title: "§6✦ Reward ✦"
+non-recyclable: "§cNot recyclable"
+
+material-label: "§aMaterial:"
+xp-estimated: "§6Estimated XP: §e"
+
+recap-title: "§aSummary:"
+total-xp: "§6Total XP: "
+
+plugin-reloaded: "§aPlugin reloaded!"

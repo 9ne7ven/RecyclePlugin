@@ -1,0 +1,157 @@
+# ========================================================
+# RecyclePlugin Configuration
+# ========================================================
+# RecyclePlugin permet de recycler tous les équipements et outils
+# directement via NPC ou command /recycle. 
+# Selon la durabilité et le type, vous obtiendrez du fer, or, diamant, 
+# cuivre, émeraude, membranes, etc.
+
+# Instructions utilisateur :
+# - Placez l'item à recycler dans l'un des 7 slots disponibles'
+# - Le résultat obtenus apparaîtra dans le chat
+# - Configurez la langue via 'language' pour les messages joueurs.
+# - Configurez les matériaux recyclables et min/max dans 'items'.
+#
+# Langues disponibles : fr, en, de, es, zh
+language: fr
+fallback-language: en
+enchanted-xp: 50 # points d'expériences donnés si item enchanté puis coeff multiplicateur
+
+# Items recyclables : material = sortie après recyclage, min/max selon durabilité
+items:
+
+  # ========================================================
+  # Points d'expérience par rareté de matériau
+  # ========================================================
+  xp_rewards:
+    common_xp: 10
+    iron_xp: 20
+    copper_xp: 15
+    gold_xp: 25
+    diamond_xp: 40
+    netherite_xp: 60
+    
+  # ====================================================
+  # ARMURE
+  # ====================================================
+  leather_helmet:    {material: LEATHER, min: 0, max: 3}
+  leather_chestplate: {material: LEATHER, min: 0, max: 3}
+  leather_leggings:   {material: LEATHER, min: 0, max: 3}
+  leather_boots:      {material: LEATHER, min: 0, max: 3}
+
+  iron_helmet:       {material: IRON_INGOT, min: 0, max: 3}
+  iron_chestplate:   {material: IRON_INGOT, min: 0, max: 3}
+  iron_leggings:     {material: IRON_INGOT, min: 0, max: 3}
+  iron_boots:        {material: IRON_INGOT, min: 0, max: 3}
+
+  copper_helmet:     {material: COPPER_INGOT, min: 0, max: 3}
+  copper_chestplate: {material: COPPER_INGOT, min: 0, max: 3}
+  copper_leggings:   {material: COPPER_INGOT, min: 0, max: 3}
+  copper_boots:      {material: COPPER_INGOT, min: 0, max: 3}
+
+  golden_helmet:     {material: GOLD_INGOT, min: 0, max: 3}
+  golden_chestplate: {material: GOLD_INGOT, min: 0, max: 3}
+  golden_leggings:   {material: GOLD_INGOT, min: 0, max: 3}
+  golden_boots:      {material: GOLD_INGOT, min: 0, max: 3}
+
+  diamond_helmet:    {material: DIAMOND, min: 0, max: 3}
+  diamond_chestplate: {material: DIAMOND, min: 0, max: 3}
+  diamond_leggings:  {material: DIAMOND, min: 0, max: 3}
+  diamond_boots:     {material: DIAMOND, min: 0, max: 3}
+
+  netherite_helmet:    {material: NETHERITE_INGOT, min: 0, max: 3}
+  netherite_chestplate: {material: NETHERITE_INGOT, min: 0, max: 3}
+  netherite_leggings:  {material: NETHERITE_INGOT, min: 0, max: 3}
+  netherite_boots:     {material: NETHERITE_INGOT, min: 0, max: 3}
+
+  chainmail_helmet:    {material: EMERALD, min: 1, max: 1}
+  chainmail_chestplate: {material: EMERALD, min: 1, max: 1}
+  chainmail_leggings:  {material: EMERALD, min: 1, max: 1}
+  chainmail_boots:     {material: EMERALD, min: 1, max: 1}
+
+  # ====================================================
+  # LANCES
+  # ====================================================
+  wooden_spear:     {material: OAK_PLANKS, min: 0, max: 2}
+  stone_spear:      {material: COBBLESTONE, min: 0, max: 2}
+  copper_spear:     {material: COPPER_INGOT, min: 0, max: 2}
+  iron_spear:       {material: IRON_INGOT, min: 0, max: 2}
+  golden_spear:     {material: GOLD_INGOT, min: 0, max: 2}
+  diamond_spear:    {material: DIAMOND, min: 0, max: 2}
+  netherite_spear:  {material: NETHERITE_INGOT, min: 0, max: 2}
+
+  # ====================================================
+  # EPÉES
+  # ====================================================
+  wooden_sword:     {material: OAK_PLANKS, min: 0, max: 2}
+  stone_sword:      {material: COBBLESTONE, min: 0, max: 2}
+  iron_sword:       {material: IRON_INGOT, min: 0, max: 2}
+  copper_sword:     {material: COPPER_INGOT, min: 0, max: 2}
+  golden_sword:     {material: GOLD_INGOT, min: 0, max: 2}
+  diamond_sword:    {material: DIAMOND, min: 0, max: 2}
+  netherite_sword:  {material: NETHERITE_INGOT, min: 0, max: 2}
+
+  # ====================================================
+  # TRIDENT
+  # ====================================================
+  trident:          {material: HEART_OF_THE_SEA, min: 1, max: 1}
+
+  # ====================================================
+  # OUTILS
+  # ====================================================
+  wooden_pickaxe:   {material: OAK_PLANKS, min: 0, max: 2}
+  wooden_axe:       {material: OAK_PLANKS, min: 0, max: 2}
+  wooden_shovel:    {material: OAK_PLANKS, min: 0, max: 2}
+  wooden_hoe:       {material: OAK_PLANKS, min: 0, max: 2}
+
+  stone_pickaxe:    {material: COBBLESTONE, min: 0, max: 2}
+  stone_axe:        {material: COBBLESTONE, min: 0, max: 2}
+  stone_shovel:     {material: COBBLESTONE, min: 0, max: 2}
+  stone_hoe:        {material: COBBLESTONE, min: 0, max: 2}
+
+  iron_pickaxe:     {material: IRON_INGOT, min: 0, max: 2}
+  iron_axe:         {material: IRON_INGOT, min: 0, max: 2}
+  iron_shovel:      {material: IRON_INGOT, min: 0, max: 2}
+  iron_hoe:         {material: IRON_INGOT, min: 0, max: 2}
+
+  copper_pickaxe:   {material: COPPER_INGOT, min: 0, max: 2}
+  copper_axe:       {material: COPPER_INGOT, min: 0, max: 2}
+  copper_shovel:    {material: COPPER_INGOT, min: 0, max: 2}
+  copper_hoe:       {material: COPPER_INGOT, min: 0, max: 2}
+  copper_sword:     {material: COPPER_INGOT, min: 0, max: 2}
+
+  golden_pickaxe:   {material: GOLD_INGOT, min: 0, max: 2}
+  golden_axe:       {material: GOLD_INGOT, min: 0, max: 2}
+  golden_shovel:    {material: GOLD_INGOT, min: 0, max: 2}
+  golden_hoe:       {material: GOLD_INGOT, min: 0, max: 2}
+
+  diamond_pickaxe:  {material: DIAMOND, min: 0, max: 2}
+  diamond_axe:      {material: DIAMOND, min: 0, max: 2}
+  diamond_shovel:   {material: DIAMOND, min: 0, max: 2}
+  diamond_hoe:      {material: DIAMOND, min: 0, max: 2}
+
+  netherite_pickaxe: {material: NETHERITE_INGOT, min: 0, max: 2}
+  netherite_axe:     {material: NETHERITE_INGOT, min: 0, max: 2}
+  netherite_shovel:  {material: NETHERITE_INGOT, min: 0, max: 2}
+  netherite_hoe:     {material: NETHERITE_INGOT, min: 0, max: 2}
+
+  # ====================================================
+  # CANNE A PECHE
+  # ====================================================
+  fishing_rod:      {material: STRING, min: 1, max: 2}
+
+  # ====================================================
+  # BOUCLIER
+  # ====================================================
+  shield:           {material: IRON_INGOT, min: 0, max: 3}
+
+  # ====================================================
+  # ARC / ARBALETE
+  # ====================================================
+  bow:              {material: STRING, min: 1, max: 5}
+  crossbow:         {material: STRING, min: 1, max: 5}
+
+  # ====================================================
+  # ELYTRA
+  # ====================================================
+  elytra:           {material: PHANTOM_MEMBRANE, min: 0, max: 1}

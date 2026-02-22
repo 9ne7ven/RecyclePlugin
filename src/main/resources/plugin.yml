@@ -1,0 +1,23 @@
+name: RecyclePlugin
+main: com.svncho.RecyclePlugin
+version: 1.0
+api-version: 1.21
+author: svncho_
+description: Recycle les items et récupère des ressources + XP.
+
+commands:
+  recycle:
+    description: Ouvrir le GUI de recyclage
+    usage: /recycle
+  rpadmin:
+    description: Recharge le plugin.
+    usage: /rpadmin reload
+    permission: recycleplugin.reload
+
+permissions:
+  recycleplugin.reload:
+    description: Permission pour recharger le plugin
+    default: op
+  recycleplugin.use:
+    description: Permet à un joueur d'utiliser le recyclage
+    default: true
