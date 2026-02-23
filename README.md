@@ -23,7 +23,7 @@ RecyclePlugin allows players to recycle tools, armor, and weapons through a clea
 
 
 /recycle - Open recycler
--
+
 /rpadmin reload - Reload configuration
 
 
