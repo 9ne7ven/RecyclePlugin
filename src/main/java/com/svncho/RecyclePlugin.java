@@ -276,9 +276,14 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
 
             if (slot == 0) {
                 event.setCancelled(true);
-                recycleConfirmed.put(player.getUniqueId(), true);
-                handleRecycle(player);
-                player.closeInventory();
+
+                boolean success = handleRecycle(player);
+
+                if (success) {
+                    recycleConfirmed.put(player.getUniqueId(), true);
+                    player.closeInventory();
+                }
+
                 return;
             }
 
@@ -366,15 +371,17 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
     // RECYCLAGE
     // =========================================================
 
-    private void handleRecycle(Player player) {
+    private boolean handleRecycle(Player player) {
 
         InventoryView view = player.getOpenInventory();
-        if (view == null) return;
+        if (view == null) return false;
+
         Inventory inv = view.getTopInventory();
-        if (inv == null) return;
+        if (inv == null) return false;
 
         int totalXP = 0;
         Map<Material, Integer> materials = new HashMap<>();
+        boolean hasValidItem = false;
 
         Component recap = msgComponent("recap-title").append(Component.newline());
 
@@ -384,9 +391,9 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
             if (item == null || item.getType() == Material.AIR) continue;
 
             RecycleData data = recycleMap.get(item.getType());
-            if (data == null) {
-                continue;
-            }
+            if (data == null) continue;
+
+            hasValidItem = true;
 
             int amount = data.maxAmount;
 
@@ -403,6 +410,11 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
             ).append(Component.newline());
 
             inv.setItem(i, null);
+        }
+
+        if (!hasValidItem) {
+            player.sendMessage(msgComponent("non-recyclable"));
+            return false;
         }
 
         recap = recap.append(Component.newline());
@@ -431,6 +443,8 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
         player.getWorld().playSound(
                 player.getLocation(),
                 Sound.BLOCK_ANVIL_USE, 1f, 1f);
+
+        return true;
     }
 
     private int calculateXP(ItemStack item, RecycleData data) {
