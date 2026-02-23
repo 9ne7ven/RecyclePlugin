@@ -39,13 +39,19 @@ iron_sword:
 
 Server owners can freely add any valid Minecraft material (based on Minecraft vanilla ID Items).
 
-📦 Requirements
+---
+
+## 📦 Requirements
+
 
 Paper 1.21+
 
 Java 21
 
-🚀 Roadmap
+
+---
+
+## 🚀 Roadmap
 
 Economy (Vault) support
 
@@ -55,6 +61,11 @@ Custom model data support
 
 PlaceholderAPI integration
 
+
+---
+
 📄 License
 
 All Rights Reserved © svncho_
+
+---
