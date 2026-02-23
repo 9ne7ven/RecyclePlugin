@@ -64,8 +64,9 @@ PlaceholderAPI integration
 
 ---
 
-📄 License
+## 📄 License
 
 All Rights Reserved © svncho_
+
 
 ---
