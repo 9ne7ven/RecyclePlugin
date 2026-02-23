@@ -19,12 +19,21 @@ RecyclePlugin allows players to recycle tools, armor, and weapons through a clea
 
 ---
 
-## 🛠 Commands
+## 🛠 Commands & Permissions
 
 
-/recycle - Open recycler
+`/recycle`  
+Open the recycling GUI.
 
-/rpadmin reload - Reload configuration
+Permission: `recycleplugin.use`  
+Default: true
+
+
+`/rpadmin reload`  
+Reload the plugin configuration.
+
+Permission: `recycleplugin.reload`  
+Default: op
 
 
 ---
