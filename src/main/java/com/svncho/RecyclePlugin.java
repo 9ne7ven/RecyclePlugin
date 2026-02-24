@@ -20,10 +20,12 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RecyclePlugin extends JavaPlugin implements Listener {
 
@@ -347,7 +349,7 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
                 continue;
             }
 
-            int amount = data.maxAmount;
+            int amount = calculateOutputAmount(item, data);
             int xp = calculateXP(item, data);
 
             ItemStack paper = new ItemStack(Material.PAPER);
@@ -381,7 +383,33 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
 
         int totalXP = 0;
         Map<Material, Integer> materials = new HashMap<>();
+
         boolean hasValidItem = false;
+        boolean hasInvalidItem = false;
+
+        for (int i = 1; i <= 7; i++) {
+
+            ItemStack item = inv.getItem(i);
+            if (item == null || item.getType() == Material.AIR) continue;
+
+            RecycleData data = recycleMap.get(item.getType());
+
+            if (data == null) {
+                hasInvalidItem = true;
+            } else {
+                hasValidItem = true;
+            }
+        }
+
+        if (hasInvalidItem) {
+            player.sendMessage(msgComponent("non-recyclable"));
+            return false;
+        }
+
+        if (!hasValidItem) {
+            player.sendMessage(msgComponent("non-recyclable"));
+            return false;
+        }
 
         Component recap = msgComponent("recap-title").append(Component.newline());
 
@@ -393,9 +421,9 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
             RecycleData data = recycleMap.get(item.getType());
             if (data == null) continue;
 
-            hasValidItem = true;
+            int amount = calculateOutputAmount(item, data);
 
-            int amount = data.maxAmount;
+            if (amount <= 0) continue;
 
             player.getInventory().addItem(new ItemStack(data.result, amount));
 
@@ -410,11 +438,6 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
             ).append(Component.newline());
 
             inv.setItem(i, null);
-        }
-
-        if (!hasValidItem) {
-            player.sendMessage(msgComponent("non-recyclable"));
-            return false;
         }
 
         recap = recap.append(Component.newline());
@@ -463,6 +486,52 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
                 : 0;
 
         return baseXP + enchantBonus;
+    }
+
+    private int calculateOutputAmount(ItemStack item, RecycleData data) {
+
+        int max = data.maxAmount;
+
+        if (!(item.getItemMeta() instanceof Damageable damageable)) {
+            return ThreadLocalRandom.current()
+                    .nextInt(data.minAmount, data.maxAmount + 1);
+        }
+
+        int maxDurability = item.getType().getMaxDurability();
+        if (maxDurability <= 0) {
+            return ThreadLocalRandom.current()
+                    .nextInt(data.minAmount, data.maxAmount + 1);
+        }
+
+        int currentDamage = damageable.getDamage();
+
+        double durabilityPercent =
+                (double) (maxDurability - currentDamage) / maxDurability;
+
+        if (durabilityPercent < 0.25) {
+            return ThreadLocalRandom.current().nextInt(0, 2);
+        }
+
+        double minScale;
+        double maxScale;
+
+        if (durabilityPercent < 0.50) {
+            minScale = 0.25;
+            maxScale = 0.50;
+        } else if (durabilityPercent < 0.75) {
+            minScale = 0.50;
+            maxScale = 0.75;
+        } else {
+            minScale = 0.75;
+            maxScale = 1.00;
+        }
+
+        double randomScale = ThreadLocalRandom.current()
+                .nextDouble(minScale, maxScale);
+
+        int result = (int) Math.round(max * randomScale);
+
+        return Math.max(result, 0);
     }
 
     // =========================================================
