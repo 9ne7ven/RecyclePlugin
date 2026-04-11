@@ -9,6 +9,7 @@ commands:
   recycle:
     description: Open the recycling GUI
     usage: /recycle
+    permission: recycleplugin.use
   rpadmin:
     description: Reload the plugin configuration
     usage: /rpadmin reload

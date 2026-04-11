@@ -262,10 +262,10 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
         Player player = (Player) event.getWhoClicked();
         if (event.getClickedInventory() == null) return;
 
-        if (event.isShiftClick()) {
-            event.setCancelled(true);
-            return;
-        }
+        // if (event.isShiftClick()) {
+        //     event.setCancelled(true);
+        //     return;
+        // }
 
         if (event.getClickedInventory().equals(event.getView().getTopInventory())) {
 
@@ -401,13 +401,21 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
             }
         }
 
-        if (hasInvalidItem) {
-            player.sendMessage(msgComponent("non-recyclable"));
+        if (hasInvalidItem && hasValidItem) {
+            player.sendMessage(msgComponent("invalid-item-present"));
+            player.playSound(
+                player.getLocation(),
+                Sound.ENTITY_VILLAGER_NO, 0.8f, 1f);
+        
             return false;
         }
 
         if (!hasValidItem) {
             player.sendMessage(msgComponent("non-recyclable"));
+            player.playSound(
+                player.getLocation(),
+                Sound.ENTITY_VILLAGER_NO, 0.8f, 1f);
+
             return false;
         }
 
@@ -490,17 +498,27 @@ public class RecyclePlugin extends JavaPlugin implements Listener {
 
     private int calculateOutputAmount(ItemStack item, RecycleData data) {
 
+        int min = data.minAmount;
         int max = data.maxAmount;
 
-        if (!(item.getItemMeta() instanceof Damageable damageable)) {
-            return ThreadLocalRandom.current()
-                    .nextInt(data.minAmount, data.maxAmount + 1);
+        if (max < min) {
+            int temp = min;
+            min = max;
+            max = temp;
+        }
+
+        if (min == max) {
+            return min;
         }
 
         int maxDurability = item.getType().getMaxDurability();
+
         if (maxDurability <= 0) {
-            return ThreadLocalRandom.current()
-                    .nextInt(data.minAmount, data.maxAmount + 1);
+            return ThreadLocalRandom.current().nextInt(min, max + 1);
+        }
+
+        if (!(item.getItemMeta() instanceof Damageable damageable)) {
+            return ThreadLocalRandom.current().nextInt(min, max + 1);
         }
 
         int currentDamage = damageable.getDamage();

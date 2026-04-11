@@ -1,10 +1,11 @@
-gui-title: "§6Recycle Menu"
+gui-title: "§6Menu du recycleur"
 
 accept: "§aAccepter"
 refuse: "§cRefuser"
 
 reward-title: "§6✦ Récompense ✦"
 non-recyclable: "§cNon recyclable"
+invalid-item-present: "§cRetirez l'item invalide pour procéder au recyclage."
 
 material-label: "§aMatériau:"
 xp-estimated: "§6XP estimée: §e"

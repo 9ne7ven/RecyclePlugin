@@ -5,6 +5,7 @@ refuse: "§c取消"
 
 reward-title: "§6✦ 奖励 ✦"
 non-recyclable: "§c无法回收"
+invalid-item-present: "§c请移除无效物品后再进行回收。"
 
 material-label: "§a材料:"
 xp-estimated: "§6预计经验: §e"

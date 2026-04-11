@@ -5,6 +5,7 @@ refuse: "§cCancel"
 
 reward-title: "§6✦ Reward ✦"
 non-recyclable: "§cNot recyclable"
+invalid-item-present: "§cRemove the invalid item to proceed with recycling."
 
 material-label: "§aMaterial:"
 xp-estimated: "§6Estimated XP: §e"
