@@ -1,18 +1,27 @@
-gui-title: "§6Recycle Menu"
+recycle-gui-title: "§6Recycle Menu"
 
-accept: "§aAccept"
-refuse: "§cCancel"
+recycle-confirm-title: "§aConfirm"
+recycle-confirm-lore: "§7Click to recycle items"
 
-reward-title: "§6✦ Reward ✦"
-non-recyclable: "§cNot recyclable"
-invalid-item-present: "§cRemove the invalid item to proceed with recycling."
+recycle-back-title: "§cClose"
+recycle-back-lore: "§7Close the menu"
 
-material-label: "§aMaterial:"
-xp-estimated: "§6Estimated XP: §e"
+recycle-info-title: "§6Preview"
+recycle-xp-estimated: "§6Estimated XP: §e"
 
-recap-title: "§aSummary:"
-total-xp: "§6Total XP: "
+recycle-info-empty-1: "§7Place items to recycle"
+recycle-info-empty-2: "§7to see the preview"
+
+recycle-non-recyclable: "§cNot recyclable"
+recycle-invalid-item-present: "§cRemove invalid items before recycling."
+
+recycle-recap-title: "§aSummary:"
+recycle-total-xp: "§6Total XP: "
+
+recycle-stats-title: "§aRecycled"
+recycle-stats-lore: "§7Total items recycled"
+
+recycle-cooldown: "§cYou must wait §e{seconds}s §cbefore recycling again."
 
 no-permission: "§cYou do not have permission."
-
 plugin-reloaded: "§aPlugin reloaded!"

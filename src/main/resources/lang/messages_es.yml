@@ -1,18 +1,27 @@
-gui-title: "§6Menú de Reciclaje"
+recycle-gui-title: "§6Menú de Reciclaje"
 
-accept: "§aAceptar"
-refuse: "§cCancelar"
+recycle-confirm-title: "§aConfirmar"
+recycle-confirm-lore: "§7Haz clic para reciclar objetos"
 
-reward-title: "§6✦ Recompensa ✦"
-non-recyclable: "§cNo reciclable"
-invalid-item-present: "§cRetira el objeto no válido para proceder con el reciclaje."
+recycle-back-title: "§cCerrar"
+recycle-back-lore: "§7Cerrar el menú"
 
-material-label: "§aMaterial:"
-xp-estimated: "§6XP estimada: §e"
+recycle-info-title: "§6Vista previa"
+recycle-xp-estimated: "§6XP estimada: §e"
 
-recap-title: "§aResumen:"
-total-xp: "§6XP Total: "
+recycle-info-empty-1: "§7Coloca objetos para reciclar"
+recycle-info-empty-2: "§7para ver la vista previa"
 
-no-permission: "§cNo tienes permiso para hacer esto."
+recycle-non-recyclable: "§cNo reciclable"
+recycle-invalid-item-present: "§cElimina los objetos inválidos antes de reciclar."
 
-plugin-reloaded: "§aPlugin recargado!"
+recycle-recap-title: "§aResumen:"
+recycle-total-xp: "§6XP total: "
+
+recycle-stats-title: "§aReciclado"
+recycle-stats-lore: "§7Total de objetos reciclados"
+
+recycle-cooldown: "§cDebes esperar §e{seconds}s §cantes de reciclar de nuevo."
+
+no-permission: "§cNo tienes permiso."
+plugin-reloaded: "§a¡Plugin recargado!"

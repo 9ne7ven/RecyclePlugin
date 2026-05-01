@@ -1,0 +1,27 @@
+recycle-gui-title: "§6Menu de Reciclagem"
+
+recycle-confirm-title: "§aConfirmar"
+recycle-confirm-lore: "§7Clique para reciclar itens"
+
+recycle-back-title: "§cFechar"
+recycle-back-lore: "§7Fechar o menu"
+
+recycle-info-title: "§6Pré-visualização"
+recycle-xp-estimated: "§6XP estimado: §e"
+
+recycle-info-empty-1: "§7Coloque itens para reciclar"
+recycle-info-empty-2: "§7para ver a pré-visualização"
+
+recycle-non-recyclable: "§cNão reciclável"
+recycle-invalid-item-present: "§cRemova os itens inválidos antes de reciclar."
+
+recycle-recap-title: "§aResumo:"
+recycle-total-xp: "§6XP total: "
+
+recycle-stats-title: "§aReciclado"
+recycle-stats-lore: "§7Total de itens reciclados"
+
+recycle-cooldown: "§cVocê deve esperar §e{seconds}s §cantes de reciclar novamente."
+
+no-permission: "§cVocê não tem permissão."
+plugin-reloaded: "§aPlugin recarregado!"

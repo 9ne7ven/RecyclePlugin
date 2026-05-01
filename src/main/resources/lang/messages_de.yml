@@ -1,18 +1,27 @@
-gui-title: "§6Recycling Menü"
+recycle-gui-title: "§6Recycling-Menü"
 
-accept: "§aBestätigen"
-refuse: "§cAbbrechen"
+recycle-confirm-title: "§aBestätigen"
+recycle-confirm-lore: "§7Klicke, um Gegenstände zu recyceln"
 
-reward-title: "§6✦ Belohnung ✦"
-non-recyclable: "§cNicht recycelbar"
-invalid-item-present: "§cEntferne das ungültige Item, um mit dem Recycling fortzufahren."
+recycle-back-title: "§cSchließen"
+recycle-back-lore: "§7Menü schließen"
 
-material-label: "§aMaterial:"
-xp-estimated: "§6Geschätzte XP: §e"
+recycle-info-title: "§6Vorschau"
+recycle-xp-estimated: "§6Geschätzte XP: §e"
 
-recap-title: "§aZusammenfassung:"
-total-xp: "§6Gesamt XP: "
+recycle-info-empty-1: "§7Lege Gegenstände zum Recyceln hinein"
+recycle-info-empty-2: "§7um die Vorschau zu sehen"
 
-no-permission: "§cDu hast keine Berechtigung dafür."
+recycle-non-recyclable: "§cNicht recycelbar"
+recycle-invalid-item-present: "§cEntferne ungültige Gegenstände vor dem Recyceln."
 
+recycle-recap-title: "§aZusammenfassung:"
+recycle-total-xp: "§6Gesamt-XP: "
+
+recycle-stats-title: "§aRecycelt"
+recycle-stats-lore: "§7Gesamt recycelte Gegenstände"
+
+recycle-cooldown: "§cDu musst §e{seconds}s §cwarten, bevor du erneut recyceln kannst."
+
+no-permission: "§cDu hast keine Berechtigung."
 plugin-reloaded: "§aPlugin neu geladen!"

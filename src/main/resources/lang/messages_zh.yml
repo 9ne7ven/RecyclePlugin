@@ -1,18 +1,27 @@
-gui-title: "§6回收菜单"
+recycle-gui-title: "§6回收菜单"
 
-accept: "§a确认"
-refuse: "§c取消"
+recycle-confirm-title: "§a确认"
+recycle-confirm-lore: "§7点击回收物品"
 
-reward-title: "§6✦ 奖励 ✦"
-non-recyclable: "§c无法回收"
-invalid-item-present: "§c请移除无效物品后再进行回收。"
+recycle-back-title: "§c关闭"
+recycle-back-lore: "§7关闭菜单"
 
-material-label: "§a材料:"
-xp-estimated: "§6预计经验: §e"
+recycle-info-title: "§6预览"
+recycle-xp-estimated: "§6预计经验：§e"
 
-recap-title: "§a总结:"
-total-xp: "§6总经验: "
+recycle-info-empty-1: "§7放入物品进行回收"
+recycle-info-empty-2: "§7以查看预览"
 
-no-permission: "§c你没有权限执行此操作。"
+recycle-non-recyclable: "§c无法回收"
+recycle-invalid-item-present: "§c请移除无效物品后再回收。"
 
-plugin-reloaded: "§a插件已重载!"
+recycle-recap-title: "§a总结："
+recycle-total-xp: "§6总经验："
+
+recycle-stats-title: "§a已回收"
+recycle-stats-lore: "§7已回收物品总数"
+
+recycle-cooldown: "§c你需要等待 §e{seconds}秒 §c后才能再次回收。"
+
+no-permission: "§c你没有权限。"
+plugin-reloaded: "§a插件已重载！"
