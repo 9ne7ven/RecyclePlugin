@@ -133,8 +133,11 @@ public class RecycleGui {
             RecycleData data = recycleManager.get(item.getType());
             if (data == null) continue;
 
-            int amount = calculator.calculateOutputAmount(item, data);
-            preview.put(data.result(), preview.getOrDefault(data.result(), 0) + amount);
+        int stackAmount = item.getAmount();
+        int amountPerItem = calculator.calculateOutputAmount(item, data);
+        int amount = amountPerItem * stackAmount;
+
+        preview.put(data.result(), preview.getOrDefault(data.result(), 0) + amount);
         }
 
         return preview;
@@ -146,7 +149,9 @@ public class RecycleGui {
             ItemStack item = inv.getItem(slot);
             if (item == null || item.getType() == Material.AIR) continue;
             RecycleData data = recycleManager.get(item.getType());
-            if (data != null) total += calculator.calculateXP(item, data);
+            if (data != null) {
+                total += calculator.calculateXP(item, data) * item.getAmount();
+            }
         }
         return total;
     }

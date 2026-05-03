@@ -209,8 +209,14 @@ public class RecycleGuiListener implements Listener {
             RecycleData data = recycleManager.get(item.getType());
             if (data == null) continue;
 
-            int amount = calculator.calculateOutputAmount(item, data);
-            if (lucky) amount *= plugin.getConfig().getInt("recycle.lucky-multiplier", 2);
+            int stackAmount = item.getAmount();
+
+            int amountPerItem = calculator.calculateOutputAmount(item, data);
+            int amount = amountPerItem * stackAmount;
+
+            if (lucky) {
+                amount *= plugin.getConfig().getInt("recycle.lucky-multiplier", 2);
+            }
 
             if (amount > 0) {
                 Map<Integer, ItemStack> leftover = player.getInventory().addItem(new ItemStack(data.result(), amount));
@@ -218,8 +224,8 @@ public class RecycleGuiListener implements Listener {
                 gained.put(data.result(), gained.getOrDefault(data.result(), 0) + amount);
             }
 
-            totalXP += calculator.calculateXP(item, data);
-            totalItemsRecycled += item.getAmount();
+            totalXP += calculator.calculateXP(item, data) * stackAmount;
+            totalItemsRecycled += stackAmount;
             inv.setItem(slot, null);
         }
 

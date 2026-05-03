@@ -19,7 +19,7 @@ public class UpdateChecker {
     }
 
     private static final String UPDATE_URL =
-    "https://gist.githubusercontent.com/9ne7ven/c595e98bf384c510aaa723cc36743299/raw/ffaf8add3860236db028238a4dfc0c17ac7e1c8b/RecyclePlugin";
+    "https://gist.githubusercontent.com/9ne7ven/c595e98bf384c510aaa723cc36743299/raw/RecyclePlugin";
 
     public void check() {
         if (!plugin.getConfig().getBoolean("update-checker.enabled", true)) return;
@@ -32,7 +32,7 @@ public class UpdateChecker {
 
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             try {
-                String latest = fetchLatestVersion(url);
+                String latest = fetchLatestVersion(url + "?t=" + System.currentTimeMillis());
                 String current = plugin.getPluginMeta().getVersion();
 
                 if (latest == null || latest.isBlank()) {
@@ -69,7 +69,14 @@ public class UpdateChecker {
 
     private String fetchLatestVersion(String urlString) throws Exception {
         URL url = URI.create(urlString).toURL();
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()))) {
+
+        var connection = url.openConnection();
+        connection.setUseCaches(false); // 🔥 important
+        connection.setRequestProperty("Cache-Control", "no-cache");
+        connection.setRequestProperty("Pragma", "no-cache");
+
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(connection.getInputStream()))) {
             return reader.readLine();
         }
     }
