@@ -3,6 +3,7 @@
 Advanced and fully configurable recycling system for Paper servers.
 
 RecyclePlugin allows players to recycle tools, armor, and weapons through a clean GUI system and receive configurable material rewards and XP.
+Feel free to add me on discord (svncho_) for any problem or open an issue on [github](https://github.com/9ne7ven/RecyclePlugin)
 
 ---
 
@@ -35,6 +36,15 @@ Reload the plugin configuration.
 Permission: `recycleplugin.reload`  
 Default: op
 
+---
+
+## 🔄 Update Checker
+
+```yml
+update-checker:
+  enabled: true
+  notify-console: true
+  notify-ops-on-join: true
 
 ---
 

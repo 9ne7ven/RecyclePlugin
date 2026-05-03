@@ -1,14 +1,21 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.svncho</groupId>
     <artifactId>RecyclePlugin</artifactId>
-    <version>1.2.0</version>
+    <version>2.0.0</version>
     <name>RecyclePlugin</name>
     <description>A fully configurable advanced GUI recycling system</description>
+
+    <properties>
+        <java.version>21</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+    </properties>
 
     <repositories>
         <repository>
@@ -26,17 +33,19 @@
         </dependency>
     </dependencies>
 
-
     <build>
+        <finalName>RecyclePlugin-${project.version}</finalName>
+
         <plugins>
-            <!-- Compiler en Java 21 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>3.13.0</version>
                 <configuration>
-                    <source>21</source>
-                    <target>21</target>
+                    <release>21</release>
+                    <encoding>UTF-8</encoding>
+                    <debug>false</debug>
+                    <fork>true</fork>
                 </configuration>
             </plugin>
         </plugins>

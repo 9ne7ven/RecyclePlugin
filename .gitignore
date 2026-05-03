@@ -1,3 +1,7 @@
+# =========================
+# IDE
+# =========================
+
 # IntelliJ
 .idea/
 *.iml
@@ -5,14 +9,42 @@
 # VSCode
 .vscode/
 
-# Build folders
+# Eclipse
+.project
+.classpath
+.settings/
+
+# =========================
+# Build / Maven / Gradle
+# =========================
+
 target/
 build/
 out/
 
-# Logs
-logs/
+# Gradle
+.gradle/
 
+# =========================
+# Compiled files
+# =========================
+
+*.class
+*.jar
+*.war
+*.log
+
+# =========================
 # OS
+# =========================
 .DS_Store
 Thumbs.db
+
+# =========================
+# Misc
+# =========================
+
+*.swp
+*.tmp
+*.bak
+*.orig

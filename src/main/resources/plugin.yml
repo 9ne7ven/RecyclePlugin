@@ -1,24 +1,30 @@
 name: RecyclePlugin
 main: com.svncho.RecyclePlugin
-version: 1.2.0
+version: 2.0.0
 api-version: '1.21'
 author: svncho_
 description: Fully configurable recycling system with GUI and XP rewards.
 
 commands:
+
   recycle:
-    description: Open the recycling GUI
+    description: Open the recycle GUI.
     usage: /recycle
     permission: recycleplugin.use
+
   rpadmin:
-    description: Reload the plugin configuration
+    description: RecyclePlugin admin command.
     usage: /rpadmin reload
     permission: recycleplugin.reload
 
+
 permissions:
-  recycleplugin.reload:
-    description: Allows reloading the plugin
-    default: op
+
   recycleplugin.use:
-    description: Allows using the recycler
     default: true
+
+  recycleplugin.reload:
+    default: op
+    
+  recycleplugin.update:
+    default: op

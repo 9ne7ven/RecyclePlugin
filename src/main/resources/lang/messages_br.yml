@@ -1,27 +1,21 @@
-recycle-gui-title: "§6Menu de Reciclagem"
-
-recycle-confirm-title: "§aConfirmar"
-recycle-confirm-lore: "§7Clique para reciclar itens"
-
-recycle-back-title: "§cFechar"
-recycle-back-lore: "§7Fechar o menu"
-
-recycle-info-title: "§6Pré-visualização"
-recycle-xp-estimated: "§6XP estimado: §e"
-
-recycle-info-empty-1: "§7Coloque itens para reciclar"
-recycle-info-empty-2: "§7para ver a pré-visualização"
-
-recycle-non-recyclable: "§cNão reciclável"
-recycle-invalid-item-present: "§cRemova os itens inválidos antes de reciclar."
-
-recycle-recap-title: "§aResumo:"
-recycle-total-xp: "§6XP total: "
-
-recycle-stats-title: "§aReciclado"
-recycle-stats-lore: "§7Total de itens reciclados"
-
-recycle-cooldown: "§cVocê deve esperar §e{seconds}s §cantes de reciclar novamente."
-
-no-permission: "§cVocê não tem permissão."
-plugin-reloaded: "§aPlugin recarregado!"
+player-only: "§cThis command can only be used by a player."
+reload-usage: "§cUsage: /rpadmin reload"
+no-permission: "§cYou do not have permission."
+plugin-reloaded: "§aRecyclePlugin reloaded."
+recycle-gui-title: "♻ Recycler"
+recycle-non-recyclable: "§cThis item cannot be recycled."
+recycle-invalid-item-present: "§cRemove invalid items before recycling."
+recycle-cooldown: "§cPlease wait {seconds}s before recycling again."
+recycle-lucky: "§aLucky recycle! Rewards doubled."
+recycle-recap-title: "§a§lRecycle Rewards"
+recycle-total-xp: "§eTotal XP: §a"
+recycle-info-title: "§eRecycle Preview"
+recycle-info-empty-1: "§7Place recyclable items above."
+recycle-info-empty-2: "§7Rewards will be previewed here."
+recycle-xp-estimated: "§eEstimated XP: §a{xp}"
+recycle-confirm-title: "§a§lConfirm Recycling"
+recycle-confirm-lore: "§7Click to recycle deposited items."
+recycle-stats-title: "Stats"
+recycle-stats-lore: "§7Total recycled items."
+recycle-back-title: "§c§lBack"
+recycle-back-lore: "§7Close and return deposited items."
