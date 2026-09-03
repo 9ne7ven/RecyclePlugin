@@ -2,6 +2,23 @@
 
 ---
 
+# ♻ RecyclePlugin — v3.0.0
+
+## 🧱 PLATFORM MIGRATION — Paper 26.2 / MC 26.2 / JDK 25
+
+This release migrates RecyclePlugin to the current Paper/Minecraft platform, following Mojang/Paper's switch to year-based versioning in 2026.
+
+- 🔧 Build target bumped to JDK 25 (`maven.compiler.release`)
+- 📦 `paper-api` dependency bumped from `1.21.11-R0.1-SNAPSHOT` to `26.2.build.121-stable`
+- 📝 `plugin.yml` `api-version` bumped from `1.21` to `26.2`
+- ✅ Full codebase audit against the new API — no removed or deprecated methods found (verified via `javac -Xlint:deprecation -Xlint:removal` against the real `paper-api-26.2` jar)
+- 🚫 No gameplay or configuration logic changed — this is a platform compatibility release only
+
+### Why a major bump
+This is a breaking compatibility change: builds targeting JDK 25 / Paper 26.2 will no longer run on older Paper/Minecraft servers (pre-26.2), so the major version reflects that boundary rather than new features.
+
+---
+
 # ♻ RecyclePlugin — v2.0.0
 
 ## 🚀 MAJOR UPDATE — COMPLETE REWORK
