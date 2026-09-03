@@ -2,6 +2,21 @@
 
 ---
 
+# ♻ RecyclePlugin — v3.0.1
+
+## 🛠 Stability & Code Quality
+
+Small follow-up to the v3.0.0 platform migration. No gameplay or config changes — internal robustness fixes only.
+
+### Fixed
+- Potential NullPointerException when resolving the fallback sound key for a configured sound effect with no explicit `sound` entry
+- Plugin startup looked up `/recycle` and `/rpadmin` commands twice instead of reusing the result, which could theoretically return inconsistent state between the two lookups
+
+### Improved
+- Narrowed several overly broad `catch (Exception e)` blocks (sound/particle resolution, numeric config parsing) down to the exact exception type each call site can throw
+
+---
+
 # ♻ RecyclePlugin — v3.0.0
 
 ## 🧱 PLATFORM MIGRATION — Paper 26.2 / MC 26.2 / JDK 25

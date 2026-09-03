@@ -181,12 +181,14 @@ public class RecycleGui {
             return;
         }
 
+        String fallbackSoundKey = soundKey(fallback, fallback.name());
+
         for (Map<?, ?> soundConfig : plugin.getConfig().getMapList(path)) {
             try {
                 String soundName = String.valueOf(
                     soundConfig.containsKey("sound")
                         ? soundConfig.get("sound")
-                        : Registry.SOUNDS.getKey(fallback).getKey()
+                        : fallbackSoundKey
                 );
 
                 float volume = parseFloat(soundConfig.get("volume"), fallbackVolume);
@@ -198,5 +200,10 @@ public class RecycleGui {
             } catch (Exception ignored) {
             }
         }
+    }
+
+    private String soundKey(Sound sound, String fallback) {
+        NamespacedKey key = Registry.SOUNDS.getKey(sound);
+        return key != null ? key.getKey() : fallback;
     }
 }

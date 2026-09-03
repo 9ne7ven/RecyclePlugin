@@ -1,6 +1,6 @@
 name: RecyclePlugin
 main: com.svncho.RecyclePlugin
-version: 3.0.0
+version: 3.0.1
 api-version: '26.2'
 author: svncho_
 description: Fully configurable recycling system with GUI and XP rewards.

@@ -7,7 +7,7 @@
 
     <groupId>com.svncho</groupId>
     <artifactId>RecyclePlugin</artifactId>
-    <version>3.0.0</version>
+    <version>3.0.1</version>
     <name>RecyclePlugin</name>
     <description>A fully configurable advanced GUI recycling system</description>
 

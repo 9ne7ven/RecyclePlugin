@@ -12,6 +12,7 @@ import com.svncho.listener.RecycleGuiListener;
 import com.svncho.recycle.RecycleManager;
 import com.svncho.update.UpdateChecker;
 import org.bukkit.Bukkit;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class RecyclePlugin extends JavaPlugin {
@@ -49,27 +50,18 @@ public class RecyclePlugin extends JavaPlugin {
         guiConfig.load();
 
         RecycleGui recycleGui = new RecycleGui(this, langManager, recycleManager, guiConfig, guiSessionManager);
-
-        if (getCommand("recycle") != null) {
-            getCommand("recycle").setExecutor(
-                    new RecycleCommand(this, langManager, recycleGui)
-            );
-        }
-
-        if (getCommand("rpadmin") != null) {
-            getCommand("rpadmin").setExecutor(
-                    new RecycleAdminCommand(this, langManager, recycleManager, guiConfig, updateChecker)
-            );
-        }
-
         RecycleTabCompleter tabCompleter = new RecycleTabCompleter();
 
-        if (getCommand("recycle") != null) {
-            getCommand("recycle").setTabCompleter(tabCompleter);
+        PluginCommand recycleCommand = getCommand("recycle");
+        if (recycleCommand != null) {
+            recycleCommand.setExecutor(new RecycleCommand(this, langManager, recycleGui));
+            recycleCommand.setTabCompleter(tabCompleter);
         }
 
-        if (getCommand("rpadmin") != null) {
-            getCommand("rpadmin").setTabCompleter(tabCompleter);
+        PluginCommand rpadminCommand = getCommand("rpadmin");
+        if (rpadminCommand != null) {
+            rpadminCommand.setExecutor(new RecycleAdminCommand(this, langManager, recycleManager, guiConfig, updateChecker));
+            rpadminCommand.setTabCompleter(tabCompleter);
         }
 
         Bukkit.getPluginManager().registerEvents(
