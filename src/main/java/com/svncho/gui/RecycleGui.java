@@ -161,7 +161,7 @@ public class RecycleGui {
             NamespacedKey key = NamespacedKey.minecraft(name.toLowerCase());
             Sound sound = Registry.SOUNDS.get(key);
             return sound != null ? sound : fallback;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             return fallback;
         }
     }
@@ -170,7 +170,7 @@ public class RecycleGui {
         if (obj == null) return fallback;
         try {
             return Float.parseFloat(obj.toString());
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             return fallback;
         }
     }

@@ -314,7 +314,7 @@ public class RecycleGuiListener implements Listener {
 
             Sound sound = key != null ? Registry.SOUNDS.get(key) : null;
             return sound != null ? sound : fallback;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             return fallback;
         }
     }
@@ -330,7 +330,7 @@ public class RecycleGuiListener implements Listener {
 
             Particle particle = key != null ? Registry.PARTICLE_TYPE.get(key) : null;
             return particle != null ? particle : fallback;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             return fallback;
         }
     }
@@ -349,7 +349,7 @@ public class RecycleGuiListener implements Listener {
         if (value == null) return fallback;
         try {
             return Float.parseFloat(String.valueOf(value));
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             return fallback;
         }
     }
@@ -358,7 +358,7 @@ public class RecycleGuiListener implements Listener {
         if (value == null) return fallback;
         try {
             return Double.parseDouble(String.valueOf(value));
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             return fallback;
         }
     }
@@ -367,7 +367,7 @@ public class RecycleGuiListener implements Listener {
         if (value == null) return fallback;
         try {
             return Integer.parseInt(String.valueOf(value));
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             return fallback;
         }
     }
